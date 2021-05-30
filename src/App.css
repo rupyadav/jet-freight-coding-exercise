@@ -1,38 +1,210 @@
-.App {
+*,
+*::after,
+*::before {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+}
+
+.home-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+.activate{
+  background-color: indigo;
+  padding: 10px !important;
+  border-radius: 2px;
+}
+.home_container_sidenav {
+  flex: 10%;
+  height: 100vh;
+  background-color: #373193;
+  color: white;
+  text-transform: uppercase;
+  position: relative;
+}
+.mob-tab-nav{
+  display: none;
+}
+.pad-b-20{
+  padding-bottom: 20px;
+}
+.home_container_sidenav__brand {
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 300;
+}
+.nav-separater {
+  height: 0.5px;
+  width: 80%;
+  background-color: white;
+  margin: 0 auto;
+}
+.home_container_sidenav__nav {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  list-style: none;
+  cursor: pointer;
+}
+.home_container_sidenav__navlist {
+  height: 20%;
+  padding: 10px 0px;
+}
+.iconClass {
+  margin-right: 10px;
+}
+.nav-user {
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  width: 80%;
+  margin: 0 auto;
+}
+.img-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid white;
+  margin: 0 auto;
+  background-color: grey;
+}
+.home_container_sidenav__user {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+section {
+  flex: 80%;
+  height: 100vh;
+  background-color: white;
+}
+
+.section-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.custom-card {
+  cursor: pointer;
+}
+.custom-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+.cardImg {
+  height: 10%;
+  width: 10%;
+}
+.card-title {
+  font-weight: 300 !important;
+  position: relative;
+}
+.booknow {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 2px 12px;
+  border-radius: 12px;
+  background-color: white;
+  font-weight: 400;
+}
+.booknow-span {
+  position: absolute;
+  right: 0;
+}
+.route-price-container {
+  display: flex;
+  font-weight: bold;
+}
+.route-countainer {
+  display: flex;
+  flex: 50%;
+  margin-right: 20px;
+}
+.route-countainer__eta {
+  margin: 0px 10px;
+  width: 100%;
+}
+.route-countainer__eta-hrs {
+  font-size: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.route-countainer__eta-bar {
+  height: 2px;
+  width: 100%;
+  background: white;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.price-container {
+  flex: 50%;
+  font-weight: bold;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.rating-container {
+  width: 50%;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.rating-figure {
+  border-radius: 100%;
+  border: #ffbd33 1px solid;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  background: #ffbd33;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+.rating-star {
+  margin-right: 10px;
+  align-self: end;
+}
+.not-found-alert{
+  width: 80%;
+  margin: 0 auto;
+}
+.search-container{
+  flex: 76vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 600px) {
+  .home_container_sidenav{
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+  .search-container {
+    flex: 45vh 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.mob-tab-nav{
+display: block;
+}
+}
+
+@media only screen and (max-width: 1024px) {
+  .home_container_sidenav{
+    display: none;
+  }
+  .search-container {
+    flex: 90vh 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.mob-tab-nav{
+  display: block;
   }
 }
