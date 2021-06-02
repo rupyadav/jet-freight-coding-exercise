@@ -1,32 +1,41 @@
-import React from "react";
-import RangeSlider from 'react-bootstrap-range-slider';
+import React, {useEffect} from "react";
+import RangeSlider from "react-bootstrap-range-slider";
 import { Row, Col, Form } from "react-bootstrap";
+import { getFilteredRangeData, handleFilterValidation } from "./util";
 
-const CostFilter = ({min, max, setMin, setMax}) => {
+const CostFilter = ({
+  minimum,
+  maximum,
+  setMinimum,
+  setMaximum,
+  setFilterSearchResult,
+}) => {
 
+  useEffect(() => {
+    let searchFlightData = getFilteredRangeData(minimum, maximum);
+    console.log("searchFlightData", searchFlightData);
+    setFilterSearchResult(searchFlightData);
+    console.log(minimum, maximum);
+  }, [minimum, maximum])
 
   return (
     <Form>
       <Form.Group as={Row}>
         <Col xs="6">
-        <Form.Label>
-          Min Value : {min}
-        </Form.Label>
+          <Form.Label>Min Value : {minimum}</Form.Label>
           <RangeSlider
-            value={min}
-            onChange={(e) => setMin(e.target.value)}
-            min={1000}
+            value={minimum}
+            onChange={(e) => setMinimum(e.target.value)}
+            min={0}
             max={15000}
           />
         </Col>
         <Col xs="6">
-        <Form.Label>
-          Max Value : {max}
-        </Form.Label>
+          <Form.Label>Max Value : {maximum}</Form.Label>
           <RangeSlider
-            value={max}
-            onChange={(e) => setMax(e.target.value)}
-            min={min}
+            value={maximum}
+            onChange={(e) => setMaximum(e.target.value)}
+            min={minimum}
             max={15000}
           />
         </Col>

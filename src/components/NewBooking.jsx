@@ -3,29 +3,48 @@ import { Nav, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import CostFilter from "./CostFilter";
 import SearchResultCard from "./SearchResultCard";
 import { flightData } from "../data";
-import { getDepartureCity, getArrivalCity, getFilteredSearchData, handleFilterValidation } from "./util";
+import {
+  getDepartureCity,
+  getArrivalCity,
+  getFilteredSearchData,
+  getFilteredRangeData,
+  handleFilterValidation,
+} from "./util";
 
 const NewBooking = () => {
-    const [departure, setDeparture] = useState(getDepartureCity()[0]);
+  const [departure, setDeparture] = useState(getDepartureCity()[0]);
   const [arrival, setArrival] = useState(getArrivalCity()[0]);
   const [date, setDate] = useState('');
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(0);
+  const [minimum, setMinimum] = useState(0);
+  const [maximum, setMaximum] = useState(0);
   const [filterSearchResult, setFilterSearchResult] = useState(flightData);
   const [validationError, setValidationError] = useState('')
 
-  const handleSerach = () => {  
-    let validationResult = handleFilterValidation(departure, arrival, min, max, date);
-    console.log(validationResult)
-    if(typeof validationResult === "string"){
-        setValidationError(validationResult);
-        return false;
-    }else{
-        setValidationError('')
+  const handleSerach = () => {
+    let validationResult = handleFilterValidation(
+      departure,
+      arrival,
+      minimum,
+      maximum,
+      date
+    );
+    if (typeof validationResult === "string") {
+      setValidationError(validationResult);
+      return false;
+    } else {
+      setValidationError('');
     }
-    let searchFlightData = getFilteredSearchData(departure, arrival, min, max)
+    let searchFlightData = getFilteredSearchData(
+      departure,
+      arrival,
+      minimum,
+      maximum
+    );
     setFilterSearchResult(searchFlightData);
   };
+
+
+
   return (
     <div className="section-body">
       <Row>
@@ -48,7 +67,7 @@ const NewBooking = () => {
             id="arrival"
             onChange={(e) => setArrival(e.target.value)}
           >
-            {getArrivalCity().map((city) => {
+            {getArrivalCity().map((city, index) => {
               return <option>{city}</option>;
             })}
           </select>
@@ -63,7 +82,13 @@ const NewBooking = () => {
           />
         </Col>
         <Col xs={12} md={4} lg={4}>
-          <CostFilter min={min} max={max} setMin={setMin} setMax={setMax} />
+          <CostFilter
+            minimum={minimum}
+            maximum={maximum}
+            setMinimum={setMinimum}
+            setMaximum={setMaximum}
+            setFilterSearchResult={setFilterSearchResult}
+          />
         </Col>
         <Col xs={12} md={2} lg={2} className="pad-b-20">
           <Button variant="primary" size="md" onClick={handleSerach}>
